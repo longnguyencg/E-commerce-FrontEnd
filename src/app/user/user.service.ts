@@ -23,12 +23,13 @@ export class UserService {
   }
 
   register(data): Observable<IUsers> {
+    console.log(data);
     return this.http.post<IUsers>(this.url + 'register', data);
   }
   logout(id) {
     return this.http.get(this.url + 'logout/' + id);
   }
   findById(id): Observable<IUsers> {
-    return this.http.get<IUsers>(this.url + 'users/' + id);
+    return this.http.get<IUsers>(this.url + id);
   }
 }

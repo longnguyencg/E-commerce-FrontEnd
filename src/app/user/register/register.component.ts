@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {UserService} from '../user.service';
 import {Router} from '@angular/router';
@@ -16,7 +16,8 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -33,7 +34,13 @@ export class RegisterComponent implements OnInit {
       password: data.password,
     };
     this.userService.register(user).subscribe(next => {
-      // this.router.navigate([]);
+      this.router.navigate(['']);
+    });
+  }
+
+  findById() {
+    this.userService.findById(1).subscribe(next => {
+      console.log(next);
     });
   }
 
