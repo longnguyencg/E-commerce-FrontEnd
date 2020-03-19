@@ -1,0 +1,30 @@
+<div class="login-container">
+  <form action="" class="form-login" [formGroup]="registerForm"  (ngSubmit)="register(registerForm.value)">
+    <ul class="login-nav">
+      <li class="login-nav__item">
+        <a routerLink="../login">Sign In</a>
+      </li>
+      <li class="login-nav__item active">
+        <a >Sign Up</a>
+      </li>
+    </ul>
+    <label  class="login__label">
+      Name
+    </label>
+    <input class="login__input form-group" type="text" formControlName="name" />
+    <label  class="login__label">
+      Email
+    </label>
+    <input class="login__input form-group" type="email" formControlName="email" />
+    <label class="login__label">
+      Password
+    </label>
+    <input  class="login__input form-group" type="password" formControlName="password"/>
+    <button type="submit" class="login__submit">Sign Up</button>
+  </form>
+  <a href="#" class="login__forgot">Forgot Password?</a>
+</div>
+
+
+
+
