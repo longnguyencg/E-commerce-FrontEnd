@@ -14,8 +14,7 @@ import {CartComponent} from './home/cart/cart.component';
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'register', component: RegisterComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'login/social', component: SocialLoginComponent}
+  {path: 'login/social', component: SocialLoginComponent},
   {
     path: 'home', component: HomeComponent, children: [
       {path: '', component: ItemComponent},
