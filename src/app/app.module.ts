@@ -1,6 +1,33 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
+import {GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {LoginComponent} from './user/login/login.component';
+import {RegisterComponent} from './user/register/register.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {HomeComponent} from './home/home.component';
+import {HeaderComponent} from './home/header/header.component';
+import {ContentComponent} from './home/content/content.component';
+import {FooterComponent} from './home/footer/footer.component';
+import {SocialLoginComponent} from './user/social-login/social-login.component';
 
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('34629895531-bjfceg08otcrvccd3q94bgnd2j2gaoim.apps.googleusercontent.com')
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('1114478768886523')
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './user/login/login.component';
@@ -27,6 +54,7 @@ import { ItemImagesSingleComponent } from './home/item-detail/item-images/item-i
     HeaderComponent,
     ContentComponent,
     FooterComponent,
+    SocialLoginComponent,
     ItemListComponent,
     ItemSingleComponent,
     ItemDetailComponent,
@@ -39,9 +67,16 @@ import { ItemImagesSingleComponent } from './home/item-detail/item-images/item-i
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SocialLoginModule
+  ],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
     FormsModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
