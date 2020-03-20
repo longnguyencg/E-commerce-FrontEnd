@@ -1,0 +1,12 @@
+<div class="container" *ngIf="!loggedIn">
+  <button (click)="signInWithFB()">Login Facebook</button>
+  <button (click)="signInWithGoogle()">Login Google</button>
+</div>
+<div class="container" *ngIf="loggedIn">
+  <img src="{{ user.photoUrl }}">
+  <div>
+    <h4>{{ user.name }}</h4>
+    <p>{{ user.email }}</p>
+  </div>
+  <button (click)="signOut()">Sign out</button>
+</div>

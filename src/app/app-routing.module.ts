@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from './user/login/login.component';
 import {HomeComponent} from './home/home.component';
 import {RegisterComponent} from './user/register/register.component';
+import {SocialLoginModule} from 'angularx-social-login';
+import {SocialLoginComponent} from './user/social-login/social-login.component';
 
 
 const routes: Routes = [
@@ -10,6 +12,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'home', component: HomeComponent},
+  {path: 'login/social', component: SocialLoginComponent}
 ];
 
 @NgModule({
