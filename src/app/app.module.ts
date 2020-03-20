@@ -44,6 +44,7 @@ import {ItemSingleComponent} from './home/item/item-list/item-single/item-single
 import {ItemDetailComponent} from './home/item-detail/item-detail.component';
 import { ItemImagesComponent } from './home/item-detail/item-images/item-images.component';
 import { ItemImagesSingleComponent } from './home/item-detail/item-images/item-images-single/item-images-single.component';
+import { CartComponent } from './home/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ItemImagesSingleComponent } from './home/item-detail/item-images/item-i
     ItemComponent,
     ItemImagesComponent,
     ItemImagesSingleComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

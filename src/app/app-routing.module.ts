@@ -7,6 +7,7 @@ import {SocialLoginModule} from 'angularx-social-login';
 import {SocialLoginComponent} from './user/social-login/social-login.component';
 import {ItemComponent} from './home/item/item.component';
 import {ItemDetailComponent} from './home/item-detail/item-detail.component';
+import {CartComponent} from './home/cart/cart.component';
 
 
 
@@ -18,7 +19,8 @@ const routes: Routes = [
   {
     path: 'home', component: HomeComponent, children: [
       {path: '', component: ItemComponent},
-      {path: ':id', component: ItemDetailComponent}
+      {path: 'detail/:id', component: ItemDetailComponent},
+      {path: 'cart', component: CartComponent},
     ]
   },
   {path: 'login', component: LoginComponent}
