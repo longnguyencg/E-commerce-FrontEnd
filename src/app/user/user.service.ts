@@ -35,8 +35,8 @@ export class UserService {
     return this.http.post<IUsers>(this.url + 'register', data);
   }
 
-  logout(id) {
-    return this.http.get(this.url + 'logout/' + id);
+  logout() {
+    return this.http.get(this.url + 'logout');
   }
 
   findById(id): Observable<IUsers> {
