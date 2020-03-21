@@ -11,8 +11,11 @@ export class UserService {
 
   url = 'http://127.0.0.1:8000/api/';
   user;
+  loggedIn: boolean;
   userData = new BehaviorSubject<object>(this.user);
   cast = this.userData.asObservable();
+  loggedInData = new BehaviorSubject<boolean>(this.loggedIn)
+  castLoggedIn = this.loggedInData.asObservable();
 
   constructor(protected http: HttpClient) {
   }
@@ -20,6 +23,9 @@ export class UserService {
   // @ts-ignore
   updateUser(user) {
     this.userData.next(user);
+  }
+  updateLoggedIn(loggedIn: boolean) {
+    this.loggedInData.next(loggedIn);
   }
 
   getAll(): Observable<IUsers[]> {
