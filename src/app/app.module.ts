@@ -29,12 +29,12 @@ export function provideConfig() {
   return config;
 }
 import {ItemComponent} from './home/item/item.component';
-import {ItemListComponent} from './home/item/item-list/item-list.component';
-import {ItemSingleComponent} from './home/item/item-list/item-single/item-single.component';
 import {ItemDetailComponent} from './home/item-detail/item-detail.component';
 import {ItemImagesComponent} from './home/item-detail/item-images/item-images.component';
 import {ItemImagesSingleComponent} from './home/item-detail/item-images/item-images-single/item-images-single.component';
 import {CartComponent} from './home/cart/cart.component';
+import { TrendingItemComponent } from './home/trending-item/trending-item.component';
+import {UserService} from './user/user.service';
 
 @NgModule({
   declarations: [
@@ -46,13 +46,12 @@ import {CartComponent} from './home/cart/cart.component';
     ContentComponent,
     FooterComponent,
     SocialLoginComponent,
-    ItemListComponent,
-    ItemSingleComponent,
     ItemDetailComponent,
     ItemComponent,
     ItemImagesComponent,
     ItemImagesSingleComponent,
     CartComponent,
+    TrendingItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +66,8 @@ import {CartComponent} from './home/cart/cart.component';
       provide: AuthServiceConfig,
       useFactory: provideConfig
     },
-    FormsModule
+    FormsModule,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

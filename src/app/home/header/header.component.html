@@ -11,56 +11,56 @@
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Simple Ecommerce</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-              aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<nav class="navbar navbar-expand-md navbar-info bg-info ">
+  <div class="container">
+    <a class="navbar-brand" routerLink="home">Paradise Lost</a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+      <ul class="navbar-nav m-auto">
+        <li class="nav-item m-auto">
+          <a class="nav-link" routerLink="home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="category.html">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="home">Product</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="home/cart">Cart <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+      </ul>
 
-      <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
-        <ul class="navbar-nav m-auto">
-          <li class="nav-item m-auto">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="category.html">Categories</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="product.html">Product</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" routerLink="home/cart">Cart <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-        </ul>
-
-        <form class="form-inline my-2 my-lg-0">
-          <div class="input-group input-group-sm">
-            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                   placeholder="Search...">
-            <div class="input-group-append">
-              <button type="button" class="btn btn-secondary btn-number">
-                <i class="fa fa-search"></i>
-              </button>
-            </div>
+      <form class="form-inline my-2 my-lg-0">
+        <div class="input-group input-group-sm">
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                 placeholder="Search...">
+          <div class="input-group-append">
+            <button type="button" class="btn btn-secondary btn-number">
+              <i class="fa fa-search"></i>
+            </button>
           </div>
-          <a class="btn btn-success btn-sm ml-3" routerLink="home/cart">
-            <i class="fa fa-shopping-cart"></i> Cart
-            <span class="badge badge-light">3</span>
-          </a>
-        </form>
-      </div>
+        </div>
+        <a class="btn btn-warning btn-sm ml-3" routerLink="home/cart" style="color: #343a40">
+          <i class="fa fa-shopping-cart"></i> Cart
+          <span class="badge badge-light">3</span>
+        </a>
+
+      </form>
+      <div style="margin-left: 10px" *ngIf="user">Hello {{user.name}}</div>
+      <div style="margin-left: 10px" *ngIf="!user"><a  routerLink="login">Login</a></div>
     </div>
-  </nav>
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">E-COMMERCE </h1>
-    </div>
-  </section>
+  </div>
+</nav>
+<section class="jumbotron text-center">
+  <div>
+    <img
+      src="../../../assets/img/impact-of-ecommerce-on-society-15647219830501355870318-crop-1564722020371805734630.png"
+      style="width: 1040px;max-height: 250px">
+  </div>
+</section>
 
 
 
