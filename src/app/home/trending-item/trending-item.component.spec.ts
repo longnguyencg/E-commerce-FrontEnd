@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ItemSingleComponent } from './item-single.component';
+import { TrendingItemComponent } from './trending-item.component';
 
-describe('ItemSingleComponent', () => {
-  let component: ItemSingleComponent;
-  let fixture: ComponentFixture<ItemSingleComponent>;
+describe('TrendingItemComponent', () => {
+  let component: TrendingItemComponent;
+  let fixture: ComponentFixture<TrendingItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemSingleComponent ]
+      declarations: [ TrendingItemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ItemSingleComponent);
+    fixture = TestBed.createComponent(TrendingItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

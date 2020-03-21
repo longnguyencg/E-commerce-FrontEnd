@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserService} from '../user.service';
+import {IUsers} from '../interface/iusers';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -31,8 +33,11 @@ export class LoginComponent implements OnInit {
     };
     this.userService.login(user).subscribe(next => {
       if (next.message === 'success') {
+        this.userService.updateUser(next.data)
         this.router.navigate(['/home']);
-      } else { alert('Sai thông tin đăng nhập'); }
+      } else {
+        alert('Sai thông tin đăng nhập');
+      }
     });
   }
 

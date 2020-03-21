@@ -8,6 +8,9 @@
   font-weight: bold;
   font-size: 150%;
 }
+a {
+  color: white;
+}
 .category_block li:hover {
   background-color: #007bff;
 }
