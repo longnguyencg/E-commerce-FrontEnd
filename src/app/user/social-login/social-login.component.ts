@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser} from 'angularx-social-login';
+import {HttpClient} from '@angular/common/http';
+import {log} from 'util';
 
 @Component({
   selector: 'app-social-login',
@@ -7,14 +9,18 @@ import {AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser} fro
   styleUrls: ['./social-login.component.css']
 })
 export class SocialLoginComponent implements OnInit {
-
+  url = 'http://localhost:8000/api/login-social';
   user: SocialUser;
   loggedIn: boolean;
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private http: HttpClient
+    ) { }
   ngOnInit() {
     this.authService.authState.subscribe((user) => {
       this.user = user;
       console.log(this.user);
+      this.http.post(this.url, user).subscribe(success => console.log('ok'));
       this.loggedIn = (user != null);
     });
   }
