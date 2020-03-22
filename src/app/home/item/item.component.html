@@ -32,11 +32,11 @@
     <div class="col">
       <div class="row">
 
-        <div class="col-12 col-md-6 col-lg-4" *ngFor="let itemsAb of items; let i=index">
+        <div class="col-12 col-md-6 col-lg-4" *ngFor="let itemsAb of items">
           <div class="card">
             <img class="card-img-top" src="{{ itemsAb.imagePath}}" alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title"><a [routerLink]="['detail/'+ i]" routerLinkActive="active" title="View Product">{{ itemsAb.name}}</a></h4>
+              <h4 class="card-title"><a [routerLink]="['detail/'+ itemsAb.id]" routerLinkActive="active" title="View Product">{{ itemsAb.name}}</a></h4>
               <p class="card-text">{{itemsAb.description}}</p>
               <div class="row">
                 <div class="col">
@@ -49,28 +49,8 @@
             </div>
           </div>
         </div>
-
-
       </div>
     </div>
-
   </div>
 </div>
 
-<!--<div class="col-12">-->
-<!--  <nav aria-label="...">-->
-<!--    <ul class="pagination">-->
-<!--      <li class="page-item">-->
-<!--        <a class="page-link active" href="#" tabindex="-1">Previous</a>-->
-<!--      </li>-->
-<!--      <li class="page-item"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>-->
-<!--      <li class="page-item">-->
-<!--        <a class="page-link" href="#">2 </a>-->
-<!--      </li>-->
-<!--      <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--      <li class="page-item">-->
-<!--        <a class="page-link" href="#">Next</a>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--  </nav>-->
-<!--</div>-->
