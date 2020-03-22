@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Items} from './item.model';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {Iitemss} from './iitems';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,6 @@ import {Iitemss} from './iitems';
 export class ItemService {
   sum = 0;
   url = 'http://127.0.0.1:8000/api/products';
-  onChangeItem: Subject<Items[]> = new Subject<Items[]>();
   items: Items[] = [];
   itemData = new BehaviorSubject<Items[]>(this.items);
   cast = this.itemData.asObservable();
@@ -36,6 +34,7 @@ export class ItemService {
         this.items.push(item);
       }
       this.updateItems(this.items);
+      console.log(this.items);
     });
   }
 
@@ -53,7 +52,7 @@ export class ItemService {
 
   getItemsById(id: number): Items {
     for (const item of this.items) {
-      if (item.id == id) {
+      if (item.id === id) {
         return item;
       }
     }
@@ -70,13 +69,13 @@ export class ItemService {
       this.sum = this.sum + rate;
     }
     item.avg = parseFloat((this.sum / item.ratingCounter).toFixed(1));
-    this.onChangeItem.next(this.items.slice());
+    // this.onChangeItem.next(this.items.slice());
   }
 
   addReview(index: number, newReview: string) {
     const item = this.getItemsById(index);
     item.reviews.push(newReview);
     item.reviewCounter++;
-    this.onChangeItem.next(this.items.slice());
+    // this.onChangeItem.next(this.items.slice());
   }
 }

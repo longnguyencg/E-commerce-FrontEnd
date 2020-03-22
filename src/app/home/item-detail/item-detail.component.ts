@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Items} from '../item/item.model';
 import {ItemService} from '../item/item.service';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Route} from '@angular/router';
 import {NgForm} from '@angular/forms';
 
 @Component({
@@ -21,14 +21,13 @@ export class ItemDetailComponent implements OnInit {
   ngOnInit(): void {
     this.itemServ.cast.subscribe(items => {
       this.items = items;
+      this.activeRoute.params.subscribe(
+        (params: Params) => {
+          this.id = parseFloat(params.id);
+          this.inItems = this.itemServ.getItemsById(this.id);
+        }
+      );
     });
-    this.activeRoute.params.subscribe(
-      (params: Params) => {
-        this.id = params.id;
-        this.inItems = this.itemServ.getItemsById(this.id);
-        console.log(this.inItems);
-      }
-    );
   }
 
   onSubmitRate(form: NgForm) {
