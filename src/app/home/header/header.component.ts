@@ -3,6 +3,7 @@ import {UserService} from '../../user/user.service';
 import {log} from 'util';
 import {Router} from '@angular/router';
 import {AuthService} from 'angularx-social-login';
+import {ItemService} from '../item/item.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,9 @@ export class HeaderComponent implements OnInit {
   user;
   loggedIn;
 
-  constructor(private usersService: UserService, private router: Router, private authService: AuthService) {
+  constructor(private usersService: UserService, private router: Router, private authService: AuthService,
+              private itemService: ItemService) {
+
   }
 
   ngOnInit(): void {
@@ -24,7 +27,6 @@ export class HeaderComponent implements OnInit {
       this.loggedIn = next;
     });
   }
-
   logout() {
     if (this.loggedIn) {
       this.authService.signOut();

@@ -17,12 +17,9 @@ export class ItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.itemServ.onChangeItem.subscribe(
-      (items: Items[]) => {
-        this.items = items;
-      }
-    );
-    this.items = this.itemServ.onGetItems();
+    this.itemServ.cast.subscribe(items => {
+      this.items = items;
+    });
     this.usersService.cast.subscribe(user => this.user = user);
   }
 }

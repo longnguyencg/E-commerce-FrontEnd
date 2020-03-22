@@ -37,7 +37,6 @@ export class UserService {
   }
 
   register(data): Observable<IUsers> {
-    console.log(data);
     return this.http.post<IUsers>(this.url + 'register', data);
   }
 
