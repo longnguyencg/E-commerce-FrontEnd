@@ -34,7 +34,7 @@
 
         <div class="col-12 col-md-6 col-lg-4" *ngFor="let itemsAb of items">
           <div class="card">
-            <img class="card-img-top" src="{{ itemsAb.imagePath}}" alt="Card image cap">
+            <img class="card-img-top" style="width: 245.48px;height: 245.48px" src="{{ itemsAb.imagePath}}" alt="Card image cap">
             <div class="card-body">
               <h4 class="card-title"><a [routerLink]="['detail/'+ itemsAb.id]" routerLinkActive="active" title="View Product">{{ itemsAb.name}}</a></h4>
               <p class="card-text">{{itemsAb.description}}</p>

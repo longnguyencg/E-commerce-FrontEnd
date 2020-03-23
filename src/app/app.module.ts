@@ -35,6 +35,7 @@ import {ItemImagesSingleComponent} from './home/item-detail/item-images/item-ima
 import {CartComponent} from './home/cart/cart.component';
 import { TrendingItemComponent } from './home/trending-item/trending-item.component';
 import {UserService} from './user/user.service';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {UserService} from './user/user.service';
     ItemImagesSingleComponent,
     CartComponent,
     TrendingItemComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

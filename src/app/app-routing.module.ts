@@ -8,6 +8,7 @@ import {SocialLoginComponent} from './user/social-login/social-login.component';
 import {ItemComponent} from './home/item/item.component';
 import {ItemDetailComponent} from './home/item-detail/item-detail.component';
 import {CartComponent} from './home/cart/cart.component';
+import {AdminComponent} from './admin/admin.component';
 
 
 
@@ -20,6 +21,7 @@ const routes: Routes = [
       {path: '', component: ItemComponent},
       {path: 'detail/:id', component: ItemDetailComponent},
       {path: 'cart', component: CartComponent},
+      {path: 'admin', component: AdminComponent},
     ]
   },
   {path: 'login', component: LoginComponent}
