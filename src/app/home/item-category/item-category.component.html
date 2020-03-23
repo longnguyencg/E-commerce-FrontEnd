@@ -11,11 +11,11 @@
       <div class="card bg-light mb-3">
         <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
         <ul class="list-group category_block">
-          <li class="list-group-item"><a routerLinkActive="active" [routerLink]="['1']">Cras justo odio</a></li>
-          <li class="list-group-item"><a routerLinkActive="active" [routerLink]="['2']">Dapibus ac facilisis in</a></li>
-          <li class="list-group-item"><a routerLinkActive="active" [routerLink]="['3']">Morbi leo risus</a></li>
-          <li class="list-group-item"><a routerLinkActive="active" [routerLink]="['4']">Porta ac consectetur ac</a></li>
-          <li class="list-group-item"><a routerLinkActive="active" [routerLink]="['5']">Vestibulum at eros</a></li>
+          <li class="list-group-item"><a (click)="alert(2)" >Art</a></li>
+          <li class="list-group-item"><a  (click)="alert(2)" >Math</a></li>
+          <li class="list-group-item"><a  (click)="alert(2)" >Morbi leo risus</a></li>
+          <li class="list-group-item"><a  (click)="alert(2)" >Porta ac consectetur ac</a></li>
+          <li class="list-group-item"><a (click)="alert(2)" >Vestibulum at eros</a></li>
         </ul>
       </div>
       <div class="card bg-light mb-3">
@@ -36,7 +36,7 @@
           <div class="card">
             <img class="card-img-top" style="width: 245.48px;height: 245.48px" src="{{ itemsAb.imagePath}}" alt="Card image cap">
             <div class="card-body">
-              <h4 class="card-title"><a [routerLink]="['detail/'+ itemsAb.id]" routerLinkActive="active" title="View Product">{{ itemsAb.name}}</a></h4>
+              <h4 class="card-title"><a [routerLink]="['../detail/'+ itemsAb.id]" routerLinkActive="active" title="View Product">{{ itemsAb.name}}</a></h4>
               <p class="card-text">{{itemsAb.description}}</p>
               <div class="row">
                 <div class="col">

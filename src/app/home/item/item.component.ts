@@ -19,6 +19,11 @@ export class ItemComponent implements OnInit {
   ngOnInit(): void {
     this.itemServ.cast.subscribe(items => {
       this.items = items;
+      for (const item of this.items) {
+        if (item.display === 0) {
+          this.items.splice(this.items.indexOf(item), 1);
+        }
+      }
     });
     this.usersService.cast.subscribe(user => this.user = user);
   }

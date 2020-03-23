@@ -9,7 +9,10 @@ import {ItemComponent} from './home/item/item.component';
 import {ItemDetailComponent} from './home/item-detail/item-detail.component';
 import {CartComponent} from './home/cart/cart.component';
 import {AdminComponent} from './admin/admin.component';
-
+import {ItemsComponent} from './admin/items/items.component';
+import {ItemDetailsComponent} from './admin/item-details/item-details.component';
+import {ItemCreateComponent} from './admin/item-create/item-create.component';
+import {ItemCategoryComponent} from './home/item-category/item-category.component';
 
 
 const routes: Routes = [
@@ -21,10 +24,18 @@ const routes: Routes = [
       {path: '', component: ItemComponent},
       {path: 'detail/:id', component: ItemDetailComponent},
       {path: 'cart', component: CartComponent},
-      {path: 'admin', component: AdminComponent},
+      {
+        path: 'admin', component: AdminComponent, children: [
+          {path: '', component: ItemsComponent},
+          {path: 'details/:id', component: ItemDetailsComponent},
+          {path: 'add', component: ItemCreateComponent},
+        ]
+      },
+      {path: ':id', component: ItemCategoryComponent}
     ]
   },
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 export interface Items {
   id: number;
+  display?: number;
   name: string;
   description: string;
   imagePath: string;
@@ -10,5 +11,5 @@ export interface Items {
   ratings: number[];
   avg: number;
   extraImages: string[];
-  category?: string;
+  category_id?: number;
 }

@@ -36,6 +36,10 @@ import {CartComponent} from './home/cart/cart.component';
 import { TrendingItemComponent } from './home/trending-item/trending-item.component';
 import {UserService} from './user/user.service';
 import { AdminComponent } from './admin/admin.component';
+import { ItemDetailsComponent } from './admin/item-details/item-details.component';
+import { ItemsComponent } from './admin/items/items.component';
+import { ItemCreateComponent } from './admin/item-create/item-create.component';
+import { ItemCategoryComponent } from './home/item-category/item-category.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +58,10 @@ import { AdminComponent } from './admin/admin.component';
     CartComponent,
     TrendingItemComponent,
     AdminComponent,
+    ItemDetailsComponent,
+    ItemsComponent,
+    ItemCreateComponent,
+    ItemCategoryComponent,
   ],
   imports: [
     BrowserModule,
