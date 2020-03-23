@@ -15,6 +15,7 @@ export class ItemDetailComponent implements OnInit {
   items: Items[];
   today: number = Date.now();
 
+
   constructor(private activeRoute: ActivatedRoute, private itemServ: ItemService) {
   }
 

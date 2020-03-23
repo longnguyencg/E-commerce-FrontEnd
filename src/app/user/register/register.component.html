@@ -1,29 +1,55 @@
-<div class="login-container">
-  <form action="" class="form-login" [formGroup]="registerForm"  (ngSubmit)="register(registerForm.value)">
-    <ul class="login-nav">
-      <li class="login-nav__item">
-        <a routerLink="../login">Sign In</a>
-      </li>
-      <li class="login-nav__item active">
-        <a >Sign Up</a>
-      </li>
-    </ul>
-    <label  class="login__label">
-      Name
-    </label>
-    <input class="login__input form-group" type="text" formControlName="name" />
-    <label  class="login__label">
-      Email
-    </label>
-    <input class="login__input form-group" type="email" formControlName="email" />
-    <label class="login__label">
-      Password
-    </label>
-    <input  class="login__input form-group" type="password" formControlName="password"/>
-    <button type="submit" class="login__submit">Sign Up</button>
-  </form>
-  <a class="login__forgot">Forgot Password?</a>
+<!--<div class="login-container">-->
+<!--  <form action="" class="form-login" [formGroup]="registerForm"  (ngSubmit)="register(registerForm.value)">-->
+<!--    <ul class="login-nav">-->
+<!--      <li class="login-nav__item">-->
+<!--        <a routerLink="../login">Sign In</a>-->
+<!--      </li>-->
+<!--      <li class="login-nav__item active">-->
+<!--        <a >Sign Up</a>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--    <label  class="login__label">-->
+<!--      Name-->
+<!--    </label>-->
+<!--    <input class="login__input form-group" type="text" formControlName="name" />-->
+<!--    <label  class="login__label">-->
+<!--      Email-->
+<!--    </label>-->
+<!--    <input class="login__input form-group" type="email" formControlName="email" />-->
+<!--    <label class="login__label">-->
+<!--      Password-->
+<!--    </label>-->
+<!--    <input  class="login__input form-group" type="password" formControlName="password"/>-->
+<!--    <button type="submit" class="login__submit">Sign Up</button>-->
+<!--  </form>-->
+<!--  <a class="login__forgot">Forgot Password?</a>-->
+<!--</div>-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+  <h2>Register</h2>
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+        <input type="text" formControlName="name" placeholder="Name" required>
+        <input type="email" formControlName="email" placeholder="Email" required>
+        <input type="password" formControlName="password" placeholder="Password" required>
+        <input type="submit" value="Register">
+      </form>
+    </div>
+  </div>
 </div>
+</body>
+</html>
+
+
 
 
 

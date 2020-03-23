@@ -8,20 +8,10 @@ import {Items} from '../home/item/item.model';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  items: Items[];
 
-  constructor(private itemService: ItemService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.itemService.cast.subscribe(items => {
-      this.items = items;
-    });
   }
-
-  deleteProduct(id) {
-    const item = this.itemService.getItemsById(id);
-    this.items.splice(this.items.indexOf(item), 1);
-    this.itemService.delete(id).subscribe();
-  };
 }
