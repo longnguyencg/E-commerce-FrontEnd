@@ -24,9 +24,11 @@
       <td>
         <button class="btn btn-danger" (click)="deleteProduct(item.id)">Delete</button>
         <button class="btn btn-info" style="margin-left: 10px" [routerLink]="['details/'+item.id]" routerLinkActive="active">Edit</button>
-        <button class="btn btn-warning" style="margin-left: 10px" (click)="hidden(item.id)">Hidden</button>
+        <span *ngIf="item.display === 1"><button class="btn btn-warning" style="margin-left: 10px" (click)="hidden(item.id)">Hidden</button></span>
+        <span *ngIf="item.display === 0"><button class="btn btn-success" style="margin-left: 10px" (click)="apprear(item.id)">Appear</button></span>
       </td>
     </tr>
     </tbody>
   </table>
 </div>
+
