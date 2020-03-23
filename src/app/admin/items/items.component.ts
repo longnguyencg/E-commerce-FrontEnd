@@ -36,11 +36,14 @@ export class ItemsComponent implements OnInit {
       display: 0
     };
     this.itemService.hidden(id, display).subscribe(next => {
-        for (const item of this.items) {
-          if (item.id === id) {
-            item.display = 0;
-          }
-        }
+        // for (const item of this.items) {
+        //   if (item.id === id) {
+        //     item.display = 0;
+        //   }
+        // }
+        this.itemService.getItems().subscribe(next1 => {
+          this.itemService.updateItems(next1);
+        });
       }
     );
   }
