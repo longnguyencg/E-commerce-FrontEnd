@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Items} from './item.model';
 import {ItemService} from './item.service';
 import {UserService} from '../../user/user.service';
+import {CategoryService} from '../category.service';
+import {ICategory} from '../icategory';
 
 @Component({
   selector: 'app-item',
@@ -12,8 +14,9 @@ export class ItemComponent implements OnInit {
 
   items: Items[] = [];
   user;
+  cates: ICategory[] = [];
 
-  constructor(private itemServ: ItemService, private usersService: UserService) {
+  constructor(private itemServ: ItemService, private usersService: UserService, private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
@@ -23,6 +26,9 @@ export class ItemComponent implements OnInit {
           this.items.push(item);
         }
       }
+    });
+    this.categoryService.getAll().subscribe(next => {
+      this.cates = next;
     });
     this.usersService.cast.subscribe(user => this.user = user);
   }
