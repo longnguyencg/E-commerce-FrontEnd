@@ -34,7 +34,6 @@ export class ItemService {
         this.items.push(item);
       }
       this.updateItems(this.items);
-      console.log(this.items);
     });
   }
 
@@ -77,5 +76,13 @@ export class ItemService {
     item.reviews.push(newReview);
     item.reviewCounter++;
     // this.onChangeItem.next(this.items.slice());
+  }
+
+  delete(id): Observable<number> {
+    return this.http.delete<number>(this.url + '/' + id);
+  }
+
+  add(item: Items): Observable<Items> {
+    return this.http.post<Items>(this.url, item);
   }
 }
