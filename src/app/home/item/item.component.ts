@@ -10,7 +10,7 @@ import {UserService} from '../../user/user.service';
 })
 export class ItemComponent implements OnInit {
 
-  items: Items[];
+  items: Items[] = [];
   user;
 
   constructor(private itemServ: ItemService, private usersService: UserService) {
@@ -18,10 +18,9 @@ export class ItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.itemServ.cast.subscribe(items => {
-      this.items = items;
-      for (const item of this.items) {
-        if (item.display === 0) {
-          this.items.splice(this.items.indexOf(item), 1);
+      for (const item of items) {
+        if (item.display === 1) {
+          this.items.push(item);
         }
       }
     });

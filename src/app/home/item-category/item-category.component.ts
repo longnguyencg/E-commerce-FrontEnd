@@ -11,7 +11,7 @@ import {ActivatedRoute, Route, Router} from '@angular/router';
 })
 export class ItemCategoryComponent implements OnInit {
   id;
-  items: Items[];
+  items: Items[] = [];
   user;
 
   constructor(private itemServ: ItemService, private usersService: UserService, private route: ActivatedRoute, private router: Router) {
@@ -21,8 +21,7 @@ export class ItemCategoryComponent implements OnInit {
     console.log('a');
     this.id = this.route.snapshot.paramMap.get('id');
     this.itemServ.getItemsByCategory(this.id).subscribe(items => {
-      this.items = items;
-      for (const item of this.items) {
+      for (const item of items) {
         item.description = 'haha';
         item.imagePath = 'https://5.imimg.com/data5/EH/IU/MY-13191810/moto-g5-plus-500x500.png';
         item.reviewCounter = 3;
@@ -38,9 +37,9 @@ export class ItemCategoryComponent implements OnInit {
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTR1g_Ee8u3W_6o2oBZipC3L6qsDBb5jD9Dde9qMA1BNDXbFzgL'
         ];
       }
-      for (const item of this.items) {
-        if (item.display === 0) {
-          this.items.splice(this.items.indexOf(item), 1);
+      for (const item of items) {
+        if (item.display === 1) {
+          this.items.push(item);
         }
       }
     });
