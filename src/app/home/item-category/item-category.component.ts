@@ -3,6 +3,8 @@ import {Items} from '../item/item.model';
 import {ItemService} from '../item/item.service';
 import {UserService} from '../../user/user.service';
 import {ActivatedRoute, Route, Router} from '@angular/router';
+import {CategoryService} from '../category.service';
+import {ICategory} from '../icategory';
 
 @Component({
   selector: 'app-item-category',
@@ -13,12 +15,16 @@ export class ItemCategoryComponent implements OnInit {
   id;
   items: Items[] = [];
   user;
+  cates: ICategory[] = [];
 
-  constructor(private itemServ: ItemService, private usersService: UserService, private route: ActivatedRoute, private router: Router) {
+  constructor(private itemServ: ItemService, private usersService: UserService, private route: ActivatedRoute,
+              private router: Router, private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
-    console.log('a');
+    this.categoryService.getAll().subscribe(next => {
+      this.cates = next;
+    });
     this.id = this.route.snapshot.paramMap.get('id');
     this.itemServ.getItemsByCategory(this.id).subscribe(items => {
       for (const item of items) {
@@ -46,10 +52,7 @@ export class ItemCategoryComponent implements OnInit {
     this.usersService.cast.subscribe(user => this.user = user);
   }
 
-  alert(number: number) {
-    this.router.navigate(['home']);
-    this.router.navigate(['home/' + number]);
-
-
+  alert(id: number) {
+    this.router.navigate(['home/' + id]);
   }
 }
