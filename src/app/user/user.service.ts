@@ -14,7 +14,7 @@ export class UserService {
   loggedIn: boolean;
   userData = new BehaviorSubject<object>(this.user);
   cast = this.userData.asObservable();
-  loggedInData = new BehaviorSubject<boolean>(this.loggedIn)
+  loggedInData = new BehaviorSubject<boolean>(this.loggedIn);
   castLoggedIn = this.loggedInData.asObservable();
 
   constructor(protected http: HttpClient) {
