@@ -19,9 +19,9 @@ export class SocialLoginComponent implements OnInit {
   ngOnInit() {
     this.authService.authState.subscribe((user) => {
       this.user = user;
+      this.loggedIn = (user != null);
       console.log(this.user);
       this.http.post(this.url, user).subscribe(success => console.log('ok'));
-      this.loggedIn = (user != null);
     });
   }
   signInWithGoogle(): void {

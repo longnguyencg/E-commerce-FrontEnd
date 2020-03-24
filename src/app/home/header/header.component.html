@@ -1,1 +1,69 @@
-<p>header works!</p>
+<!--<nav class="navbar navbar-dark bg-dark">-->
+<!--  <a class="navbar-brand" routerLink="home">Paradise</a>-->
+
+
+<!--</nav>-->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<nav class="navbar navbar-expand-md navbar-info bg-info ">
+  <div class="container">
+    <a class="navbar-brand" routerLink="home">Paradise Lost</a>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+      <ul class="navbar-nav m-auto">
+        <li class="nav-item m-auto">
+          <a class="nav-link" routerLink="home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="category.html">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="home">Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+        <li class="nav-item" >
+          <a class="btn btn-warning btn-sm ml-3" routerLink="home/cart" style="color: #343a40;margin-top: 5px">
+            <i class="fa fa-shopping-cart"></i> Cart
+            <span class="badge badge-light">3</span>
+          </a>
+        </li>
+      </ul>
+
+      <form class="form-inline my-2 my-lg-0">
+        <div class="input-group input-group-sm">
+          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                 placeholder="Search...">
+          <div class="input-group-append">
+            <button type="button" class="btn btn-secondary btn-number">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+      <div style="margin-left: 10px" *ngIf="user">Hello {{user.name}} |</div>
+      <div style="margin-left: 10px" *ngIf="user">
+        <a href="#" (click)="logout()">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+      </div>
+      <div style="margin-left: 10px" *ngIf="!user"><a  routerLink="login">Login</a></div>
+    </div>
+  </div>
+</nav>
+<section class="jumbotron text-center">
+  <div>
+    <img
+      src="../../../assets/img/impact-of-ecommerce-on-society-15647219830501355870318-crop-1564722020371805734630.png"
+      style="width: 1040px;max-height: 250px">
+  </div>
+</section>
+
+
+

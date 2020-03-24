@@ -1,29 +1,46 @@
-<div class="login-container">
-  <form action="" class="form-login" [formGroup]="loginForm"  (ngSubmit)="login(loginForm.value)">
-    <ul class="login-nav">
-      <li class="login-nav__item active">
-        <a href="#">Sign In</a>
-      </li>
-      <li class="login-nav__item">
-        <a routerLink="../register">Sign Up</a>
-      </li>
-    </ul>
-    <label  class="login__label">
-      Email
-    </label>
-    <input class="login__input form-group" type="email" formControlName="email" />
-    <label class="login__label">
-      Password
-    </label>
-    <input  class="login__input form-group" type="password" formControlName="password"/>
-    <label  class="login__label--checkbox">
-      <input  type="checkbox" class="login__input--checkbox" />
-      Keep me Signed in
-    </label>
-    <button type="submit" class="login__submit">Sign in</button>
-  </form>
-  <a href="#" class="login__forgot">Forgot Password?</a>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+  <h2>Login</h2>
+    <div class="row">
+      <div class="vl">
+        <span class="vl-innertext">or</span>
+      </div>
+
+      <div class="col">
+        <a  class="fb btn" (click)="signInWithFB()">
+          <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+        </a>
+        <a  class="twitter btn">
+          <i class="fa fa-twitter fa-fw"></i> Login with Twitter
+        </a>
+        <a  class="google btn" (click)="signInWithGoogle()"><i class="fa fa-google fa-fw">
+        </i> Login with Google+
+        </a>
+      </div>
+
+      <div class="col">
+        <div class="hide-md-lg">
+          <p>Or sign in manually:</p>
+        </div>
+        <form [formGroup]="loginForm"  (ngSubmit)="login(loginForm.value)">
+
+        <input type="email" formControlName="email" placeholder="Email" required>
+        <input type="password" formControlName="password" placeholder="Password" required>
+        <input type="submit" value="Login">
+        </form>
+
+      </div>
+
+    </div>
 </div>
+</body>
+</html>
 
 
 

@@ -2,12 +2,11 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 import {GoogleLoginProvider, FacebookLoginProvider} from 'angularx-social-login';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './user/login/login.component';
 import {RegisterComponent} from './user/register/register.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {HomeComponent} from './home/home.component';
 import {HeaderComponent} from './home/header/header.component';
@@ -29,6 +28,13 @@ const config = new AuthServiceConfig([
 export function provideConfig() {
   return config;
 }
+import {ItemComponent} from './home/item/item.component';
+import {ItemDetailComponent} from './home/item-detail/item-detail.component';
+import {ItemImagesComponent} from './home/item-detail/item-images/item-images.component';
+import {ItemImagesSingleComponent} from './home/item-detail/item-images/item-images-single/item-images-single.component';
+import {CartComponent} from './home/cart/cart.component';
+import { TrendingItemComponent } from './home/trending-item/trending-item.component';
+import {UserService} from './user/user.service';
 
 @NgModule({
   declarations: [
@@ -40,19 +46,28 @@ export function provideConfig() {
     ContentComponent,
     FooterComponent,
     SocialLoginComponent,
+    ItemDetailComponent,
+    ItemComponent,
+    ItemImagesComponent,
+    ItemImagesSingleComponent,
+    CartComponent,
+    TrendingItemComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+    FormsModule
   ],
   providers: [
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig
-    }
+    },
+    FormsModule,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

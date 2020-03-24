@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="row">
+
+    <app-item-images-single *ngFor="let img of items1.extraImages; let i=index" [imgUrl]="img"
+                            [index]="i" (urlEvent)="urlChange($event)">
+    </app-item-images-single>
+  </div>
+</div>
