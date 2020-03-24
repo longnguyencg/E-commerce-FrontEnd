@@ -81,4 +81,8 @@ export class ItemDetailsComponent implements OnInit {
   get category() {
     return this.editForm.get('category_id');
   }
+
+  cancel() {
+    this.router.navigate(['home/admin']);
+  }
 }

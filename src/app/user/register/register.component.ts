@@ -28,14 +28,18 @@ export class RegisterComponent implements OnInit {
   }
 
   register(data) {
-    const user = {
-      name: data.name,
-      email: data.email,
-      password: data.password,
-    };
-    this.userService.register(user).subscribe(next => {
-      this.router.navigate(['']);
-    });
+    if (data.name && data.email && data.password) {
+      const user = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      };
+      this.userService.register(user).subscribe(next => {
+        this.router.navigate(['']);
+      });
+    } else {
+      alert('Error');
+    }
   }
 
   findById() {
@@ -44,4 +48,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  cancel() {
+    this.router.navigate(['login']);
+  }
 }

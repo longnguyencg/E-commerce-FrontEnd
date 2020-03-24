@@ -22,7 +22,9 @@
         <div *ngIf="category.errors.required">Category is required</div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Edit</button>
+    <button (click)="cancel()" class="btn btn-primary" style="margin-left: 10px">Cancel</button>
+
   </form>
 </div>
 

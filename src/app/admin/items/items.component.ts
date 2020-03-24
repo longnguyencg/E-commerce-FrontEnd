@@ -22,9 +22,11 @@ export class ItemsComponent implements OnInit {
   }
 
   deleteProduct(id) {
-    const item = this.itemService.getItemsById(id);
-    this.items.splice(this.items.indexOf(item), 1);
-    this.itemService.delete(id).subscribe();
+    if (confirm('Are you sure')) {
+      const item = this.itemService.getItemsById(id);
+      this.items.splice(this.items.indexOf(item), 1);
+      this.itemService.delete(id).subscribe();
+    }
   }
 
   changeToAdd() {
@@ -42,6 +44,7 @@ export class ItemsComponent implements OnInit {
       }
     );
   }
+
   apprear(id: number) {
     const display = {
       display: 1
