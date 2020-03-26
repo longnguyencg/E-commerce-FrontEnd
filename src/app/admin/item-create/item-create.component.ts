@@ -61,7 +61,7 @@ export class ItemCreateComponent implements OnInit {
   cancel() {
     this.router.navigate(['home/admin']);
   }
-  onCheckChange($event: Event) {
+  onCheckChange(event) {
     const formArray: FormArray = this.addForm.get('categories') as FormArray;
     if (event.target.checked) {
       // Add a new control in the arrayForm
