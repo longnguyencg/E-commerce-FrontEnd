@@ -37,7 +37,6 @@ export class ItemService {
         ];
         this.items.push(item);
       }
-      console.log(this.items);
       this.updateItems(this.items);
     });
   }
