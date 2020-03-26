@@ -15,8 +15,11 @@ export class ItemService {
 
   constructor(private http: HttpClient) {
     this.getItems().subscribe(items => {
-      const products = items;
-      for (const item of products) {
+      const itemss = [];
+      for (const product of items) {
+        itemss.push(product[0]);
+      }
+      for (const item of itemss) {
         item.description = 'haha';
         item.imagePath = 'https://5.imimg.com/data5/EH/IU/MY-13191810/moto-g5-plus-500x500.png';
         item.reviewCounter = 3;
@@ -56,6 +59,7 @@ export class ItemService {
     }
     this.itemData.next(items);
   }
+
   hidden(id, display): Observable<any> {
     return this.http.patch<any>(this.url + '/' + id, display);
   }
@@ -87,14 +91,12 @@ export class ItemService {
       this.sum = this.sum + rate;
     }
     item.avg = parseFloat((this.sum / item.ratingCounter).toFixed(1));
-    // this.onChangeItem.next(this.items.slice());
   }
 
   addReview(index: number, newReview: string) {
     const item = this.getItemsById(index);
     item.reviews.push(newReview);
     item.reviewCounter++;
-    // this.onChangeItem.next(this.items.slice());
   }
 
   delete(id): Observable<number> {

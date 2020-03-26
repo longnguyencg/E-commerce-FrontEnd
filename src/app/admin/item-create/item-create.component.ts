@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {ItemService} from '../../home/item/item.service';
 import {CategoryService} from '../../home/category.service';
@@ -24,20 +24,24 @@ export class ItemCreateComponent implements OnInit {
     this.addForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(4)]],
       price: ['', [Validators.required]],
-      category_id: ['', [Validators.required]]
+      categories: this.fb.array([])
     });
   }
 
   add(data) {
-    if (data.name && data.price && data.category_id) {
+    if (data.name && data.price && data.categories) {
       const product = {
         name: data.name,
         price: data.price,
-        category_id: data.category_id
+        categories: data.categories
       };
       this.itemService.addItem(product).subscribe(next => {
         this.itemService.getItems().subscribe(next1 => {
-            this.itemService.updateItems(next1);
+            const products = [];
+            for (const product1 of next1) {
+              products.push(product1[0]);
+            }
+            this.itemService.updateItems(products);
           }
         );
         this.router.navigate(['home/admin']);
@@ -54,12 +58,26 @@ export class ItemCreateComponent implements OnInit {
   get price() {
     return this.addForm.get('price');
   }
-
-  get category() {
-    return this.addForm.get('category_id');
-  }
-
   cancel() {
     this.router.navigate(['home/admin']);
+  }
+  onCheckChange($event: Event) {
+    const formArray: FormArray = this.addForm.get('categories') as FormArray;
+    if (event.target.checked) {
+      // Add a new control in the arrayForm
+      formArray.push(new FormControl(event.target.value));
+    } else {
+      // find the unselected element
+      let i = 0;
+
+      formArray.controls.forEach((ctrl: FormControl) => {
+        if (ctrl.value === event.target.value) {
+          // Remove the unselected element from the arrayForm
+          formArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
   }
 }

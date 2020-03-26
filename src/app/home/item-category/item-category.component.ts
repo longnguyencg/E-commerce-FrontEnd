@@ -27,6 +27,7 @@ export class ItemCategoryComponent implements OnInit {
     });
     this.id = this.route.snapshot.paramMap.get('id');
     this.itemServ.getItemsByCategory(this.id).subscribe(items => {
+      console.log(items);
       for (const item of items) {
         item.description = 'haha';
         item.imagePath = 'https://5.imimg.com/data5/EH/IU/MY-13191810/moto-g5-plus-500x500.png';
