@@ -1,6 +1,7 @@
 <div class="container">
   <form [formGroup]="editForm" (ngSubmit)="update(editForm.value)">
-    {{ editForm.value | json}}
+    <div style="display: none">{{ editForm.value | json }}</div>
+    {{ editForm.value | json }}
     <div class="form-group">
       <label>Name</label>
       <input type="text" class="form-control" formControlName="name">
@@ -22,7 +23,7 @@
       <label>Category</label>
       <br>
       <span *ngFor=" let cate of cates">
-        <input type="checkbox" [checked]="cate.check" (change)="onCheckChange($event)" value="{{ cate.id}}">{{cate.name}}
+          <input type="checkbox" [checked]="cate.check==1" (change)="onCheckChange($event)" value="{{cate.id}}">{{cate.name}}
       </span>
     </div>
     <button type="submit" class="btn btn-primary">Edit</button>
