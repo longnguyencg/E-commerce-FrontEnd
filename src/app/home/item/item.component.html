@@ -11,7 +11,10 @@
       <div class="card bg-light mb-3">
         <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
         <ul class="list-group category_block">
-          <li class="list-group-item" *ngFor=" let cate of cates"><a routerLinkActive="active" [routerLink]="[cate.id]">{{ cate.name }}</a></li>
+          <li class="list-group-item"><a (click)="backToHome()">All Products</a></li>
+        </ul>
+        <ul class="list-group category_block">
+          <li class="list-group-item" *ngFor=" let cate of cates"><a (click)="listOfCate(cate.id)">{{ cate.name }}</a></li>
         </ul>
       </div>
       <div class="card bg-light mb-3">
