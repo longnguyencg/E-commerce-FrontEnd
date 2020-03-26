@@ -11,5 +11,5 @@ export interface Items {
   ratings: number[];
   avg: number;
   extraImages: string[];
-  category_id?: number;
+  categories: number[];
 }

@@ -15,14 +15,17 @@ export class ItemDetailsComponent implements OnInit {
   inItems: Items;
   items: Items[] = [];
   editForm;
-  categoryId: number;
 
   constructor(private activeRoute: ActivatedRoute, private itemServ: ItemService, private fb: FormBuilder, private router: Router) {
   }
 
   ngOnInit(): void {
     this.itemServ.getItems().subscribe(items => {
-        for (const item of items) {
+        const products = [];
+        for (const product of items) {
+          products.push(product[0]);
+        }
+        for (const item of products) {
           item.description = 'haha';
           item.imagePath = 'https://5.imimg.com/data5/EH/IU/MY-13191810/moto-g5-plus-500x500.png';
           item.reviewCounter = 3;
@@ -43,11 +46,9 @@ export class ItemDetailsComponent implements OnInit {
           (params: Params) => {
             this.id = parseFloat(params.id);
             this.inItems = this.itemServ.getItemsById(this.id);
-            this.categoryId = this.inItems.category_id;
             this.editForm = this.fb.group({
               name: [this.inItems.name, [Validators.required, Validators.minLength(4)]],
               price: [this.inItems.price, [Validators.required]],
-              category_id: [this.inItems.category_id, [Validators.required]]
             });
           }
         );
@@ -63,7 +64,11 @@ export class ItemDetailsComponent implements OnInit {
     };
     this.itemServ.update(item, this.id).subscribe(next => {
       this.itemServ.getItems().subscribe(next1 => {
-          this.itemServ.updateItems(next1);
+          const products = [];
+          for (const product of next1) {
+            products.push(product[0]);
+          }
+          this.itemServ.updateItems(products);
         }
       );
       this.router.navigate(['home/admin']);

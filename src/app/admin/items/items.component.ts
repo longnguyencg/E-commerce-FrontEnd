@@ -39,7 +39,11 @@ export class ItemsComponent implements OnInit {
     };
     this.itemService.hidden(id, display).subscribe(next => {
         this.itemService.getItems().subscribe(next1 => {
-          this.itemService.updateItems(next1);
+          const products = [];
+          for (const product of next1) {
+            products.push(product[0]);
+          }
+          this.itemService.updateItems(products);
         });
       }
     );
@@ -51,7 +55,11 @@ export class ItemsComponent implements OnInit {
     };
     this.itemService.hidden(id, display).subscribe(next => {
         this.itemService.getItems().subscribe(next1 => {
-          this.itemService.updateItems(next1);
+          const products = [];
+          for (const product of next1) {
+            products.push(product[0]);
+          }
+          this.itemService.updateItems(products);
         });
       }
     );
