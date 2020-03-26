@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Items} from './item.model';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {Idata} from './idata';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,7 @@ export class ItemService {
         ];
         this.items.push(item);
       }
+      console.log(this.items);
       this.updateItems(this.items);
     });
   }
@@ -99,8 +101,8 @@ export class ItemService {
     item.reviewCounter++;
   }
 
-  delete(id): Observable<number> {
-    return this.http.delete<number>(this.url + '/' + id);
+  delete(id): Observable<Idata> {
+    return this.http.delete<Idata>(this.url + '/' + id);
   }
 
   add(item: Items): Observable<Items> {

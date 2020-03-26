@@ -25,7 +25,13 @@ export class ItemsComponent implements OnInit {
     if (confirm('Are you sure')) {
       const item = this.itemService.getItemsById(id);
       this.items.splice(this.items.indexOf(item), 1);
-      this.itemService.delete(id).subscribe();
+      this.itemService.delete(id).subscribe(next => {
+        if (next.success) {
+          console.log('Deleted');
+        } else {
+          console.log('Fail');
+        }
+      });
     }
   }
 
