@@ -14,24 +14,41 @@
           </div>
         </div>
       </div>
+      <Br>
+      <div class="card">
+        <label><b>Details: </b></label>
+        {{inItems.description}}
+        <br>
+        <br>
+      </div>
     </div>
 
     <div class="col-xs-6" id="page2">
       <div class="container">
         <a [routerLink]="'/'">Home</a>
         <h1>{{inItems.name}}</h1>
-        <h6>Avg Rating: <b>{{inItems.avg}}</b>, <b>{{inItems.ratingCounter}}</b> ratings,
-          <b>{{inItems.reviewCounter}}</b> reviews</h6>
-        <h4><b>{{inItems.price | currency}}</b></h4>
+        <h6>Avg Rating: <b>{{rate}}</b>, Count Rating: <b>{{countRate}}</b></h6>
         <br>
-        <label><b>Details: </b></label>
+        <h5>Price: <b style="text-decoration: line-through">{{inItems.price}}</b></h5>
+        <h5>Sale : <b>{{ inItems.sale_price | currency}}</b></h5>
+        <label *ngIf="user && voteByUser"><i>You voted with {{ voteByUser.amount }} *</i></label>
         <br>
-        {{inItems.description}}
+        <label *ngIf="user && voteByUser"><i>You can revoted below</i></label>
+        <form *ngIf="user && voteByUser" (ngSubmit)="onSubmitRate(rateForm.value)" [formGroup]="rateForm">
+          <select formControlName="amount">
+            <option value="1">*</option>
+            <option value="2">**</option>
+            <option value="3">***</option>
+            <option value="4">****</option>
+            <option value="5">*****</option>
+          </select>
+          <br>
+          <br>
+          <input class="btn btn-primary" [disabled]="!rateForm.valid" type="submit" value="Rating">
+        </form>
+        <label *ngIf="user && !voteByUser"><i>Give a vote below!!</i></label>
         <br>
-        <br>
-        <label><i>Give a rating below!!</i></label>
-        <br>
-        <form (ngSubmit)="onSubmitRate(rateForm.value)" [formGroup]="rateForm">
+        <form *ngIf="user && !voteByUser" (ngSubmit)="onSubmitRate(rateForm.value)" [formGroup]="rateForm">
           <select formControlName="amount">
             <option value="1">*</option>
             <option value="2">**</option>
@@ -50,14 +67,15 @@
           <ul class="list-group" *ngFor="let review of reviews">
             <li class="list-group-item">
               <strong>From {{ review.user.name}} :</strong>
-              <br>
               {{review.content}}
+              <br>
+              <a *ngIf="user && user.id === review.user.id" style="color: red;font-style: italic" (click)="deleteCmt(review.id)">Delete</a>
             </li>
             <br>
           </ul>
         </div>
         <Label *ngIf="user"><b>Leave a review below!</b></Label>
-        <form *ngIf="user" (ngSubmit)="onSubmitReview(cmtForm.value)" [formGroup]="cmtForm" >
+        <form *ngIf="user" (ngSubmit)="onSubmitReview(cmtForm.value)" [formGroup]="cmtForm">
           <textarea formControlName="content" cols="40" rows="5" required></textarea>
           <br>
           <input class="btn btn-primary" [disabled]="!cmtForm.valid" type="submit" value="Bình Luận">

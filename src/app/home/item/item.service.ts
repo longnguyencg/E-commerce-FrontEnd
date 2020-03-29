@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {Idata} from './idata';
 import {IComment} from '../item-detail/IComment';
 import {IRate} from '../item-detail/IRate';
+import {IVote} from '../item-detail/IVote';
 
 @Injectable({
   providedIn: 'root'
@@ -60,9 +61,15 @@ export class ItemService {
   getItems(): Observable<Items[]> {
     return this.http.get<Items[]>(this.url);
   }
+  getVoteByUser( userId , productId): Observable<IVote> {
+    return this.http.get<IVote>(this.urlRate + '/users/' + userId + '/products/' + productId);
+  }
 
   onGetItems() {
     return this.items;
+  }
+  reVote(vote): Observable<any> {
+    return this.http.patch<any>(this.urlRate, vote);
   }
 
   getItemsById(id: number): Items {
@@ -72,17 +79,23 @@ export class ItemService {
       }
     }
   }
+  deleteCmt(id): Observable<any> {
+    return this.http.delete<any>(this.urlCmt + '/' + id);
+  }
 
   addRating(newRate): Observable<IRate> {
     return this.http.post<IRate>(this.urlRate, newRate);
   }
 
-  addReview(cmt): Observable<IComment> {
-    return this.http.post<IComment>(this.urlCmt, cmt);
+  addReview(cmt): Observable<any> {
+    return this.http.post<any>(this.urlCmt, cmt);
   }
 
   getReview(id): Observable<IComment[]> {
     return this.http.get<IComment[]>(this.urlCmt + '/' + id);
+  }
+  getRating(id): Observable<IVote[]> {
+    return this.http.get<IVote[]>(this.urlRate + '/products/' + id);
   }
 
   delete(id): Observable<Idata> {
