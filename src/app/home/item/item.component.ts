@@ -13,9 +13,11 @@ import {ICategory} from '../icategory';
 export class ItemComponent implements OnInit {
 
   items: Items[] = [];
+  itemsData: Items[] = [];
   user;
   cates: ICategory[] = [];
   cateName: string;
+  text = '';
 
   constructor(private itemServ: ItemService, private usersService: UserService, private categoryService: CategoryService) {
   }
@@ -25,6 +27,7 @@ export class ItemComponent implements OnInit {
       for (const item of items) {
         if (item.display === 1) {
           this.items.push(item);
+          this.itemsData.push(item);
         }
       }
     });
@@ -41,6 +44,7 @@ export class ItemComponent implements OnInit {
       }
     }
     this.items = [];
+    this.itemsData = [];
     this.itemServ.getItemsByCategory(id).subscribe(items => {
       const arr = [];
       for (const item1 of items ) {
@@ -59,13 +63,26 @@ export class ItemComponent implements OnInit {
       for (const item of arr) {
         if (item.display === 1) {
           this.items.push(item);
+          this.itemsData.push(item);
         }
       }
     });
   }
   backToHome() {
     this.items = [];
+    this.itemsData = [];
     this.cateName = '';
     this.ngOnInit();
+  }
+  filterSeach(value): Items[] {
+    return this.itemsData.filter(item => item.name.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+  }
+  searchText(value) {
+    this.text = value;
+    if (this.filterSeach(this.text).length === 0) {
+      this.items = this.itemsData;
+    } else {
+      this.items = this.filterSeach(this.text);
+    }
   }
 }
