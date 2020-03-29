@@ -27,8 +27,11 @@ export class ItemCategoryComponent implements OnInit {
     });
     this.id = this.route.snapshot.paramMap.get('id');
     this.itemServ.getItemsByCategory(this.id).subscribe(items => {
-      console.log(items);
-      for (const item of items) {
+      const arr = [];
+      for (const item1 of items ) {
+        arr.push(item1[0]);
+      }
+      for (const item of arr) {
         item.description = 'haha';
         item.imagePath = 'https://5.imimg.com/data5/EH/IU/MY-13191810/moto-g5-plus-500x500.png';
         item.reviewCounter = 3;
@@ -44,7 +47,7 @@ export class ItemCategoryComponent implements OnInit {
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTR1g_Ee8u3W_6o2oBZipC3L6qsDBb5jD9Dde9qMA1BNDXbFzgL'
         ];
       }
-      for (const item of items) {
+      for (const item of arr) {
         if (item.display === 1) {
           this.items.push(item);
         }

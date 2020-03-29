@@ -40,6 +40,8 @@ import { ItemDetailsComponent } from './admin/item-details/item-details.componen
 import { ItemsComponent } from './admin/items/items.component';
 import { ItemCreateComponent } from './admin/item-create/item-create.component';
 import { ItemCategoryComponent } from './home/item-category/item-category.component';
+import { RatingComponent } from './home/item-detail/rating/rating.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { ItemCategoryComponent } from './home/item-category/item-category.compon
     ItemsComponent,
     ItemCreateComponent,
     ItemCategoryComponent,
+    RatingComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

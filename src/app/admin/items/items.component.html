@@ -5,6 +5,8 @@
     <tr>
       <th scope="col">STT</th>
       <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Sale price</th>
       <th scope="col">Price</th>
       <th scope="col">Display</th>
       <th scope="col">Image</th>
@@ -15,6 +17,8 @@
     <tr *ngFor="let item of items; let i = index">
       <td>{{ i + 1 }}</td>
       <td>{{ item.name }}</td>
+      <td>{{ item.description }}</td>
+      <td>{{ item.sale_price }}</td>
       <td>{{ item.price }}</td>
       <td *ngIf="item.display === 1">Hiện</td>
       <td *ngIf="item.display === 0">Ẩn</td>

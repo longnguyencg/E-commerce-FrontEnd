@@ -3,6 +3,8 @@ import {Items} from './item.model';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Idata} from './idata';
+import {IComment} from '../item-detail/IComment';
+import {IRate} from '../item-detail/IRate';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,8 @@ import {Idata} from './idata';
 export class ItemService {
   sum = 0;
   url = 'http://127.0.0.1:8000/api/products';
+  urlCmt = 'http://127.0.0.1:8000/api/comments';
+  urlRate = 'http://127.0.0.1:8000/api/votes';
   items: Items[] = [];
   itemData = new BehaviorSubject<Items[]>(this.items);
   cast = this.itemData.asObservable();
@@ -21,13 +25,7 @@ export class ItemService {
         itemss.push(product[0]);
       }
       for (const item of itemss) {
-        item.description = 'haha';
         item.imagePath = 'https://5.imimg.com/data5/EH/IU/MY-13191810/moto-g5-plus-500x500.png';
-        item.reviewCounter = 3;
-        item.reviews = ['good', 'bad', 'ok'];
-        item.ratingCounter = 3;
-        item.ratings = [3, 5, 3];
-        item.avg = 3.3;
         item.extraImages = [
           'https://fscl01.fonpit.de/userfiles/6727621/image/2017/lenovo-moto-g5/AndroidPIT-lenovo-moto-g5-1120-w810h462.jpg',
           'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQs5vZtDVm21sb-dInaZ-7qJXJCqNKzDTc50UO3-G97A6zGNf5k',
@@ -37,20 +35,13 @@ export class ItemService {
         ];
         this.items.push(item);
       }
-      console.log(this.items);
       this.updateItems(this.items);
     });
   }
 
   updateItems(items) {
     for (const item of items) {
-      item.description = 'haha';
       item.imagePath = 'https://5.imimg.com/data5/EH/IU/MY-13191810/moto-g5-plus-500x500.png';
-      item.reviewCounter = 3;
-      item.reviews = ['good', 'bad', 'ok'];
-      item.ratingCounter = 3;
-      item.ratings = [3, 5, 3];
-      item.avg = 3.3;
       item.extraImages = [
         'https://fscl01.fonpit.de/userfiles/6727621/image/2017/lenovo-moto-g5/AndroidPIT-lenovo-moto-g5-1120-w810h462.jpg',
         'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQs5vZtDVm21sb-dInaZ-7qJXJCqNKzDTc50UO3-G97A6zGNf5k',
@@ -82,23 +73,16 @@ export class ItemService {
     }
   }
 
-  addRating(index: number, newRate: number) {
-    const item = this.getItemsById(index);
-    item.ratings.push(newRate);
-    item.ratingCounter++;
-
-    this.sum = 0;
-
-    for (const rate of item.ratings) {
-      this.sum = this.sum + rate;
-    }
-    item.avg = parseFloat((this.sum / item.ratingCounter).toFixed(1));
+  addRating(newRate): Observable<IRate> {
+    return this.http.post<IRate>(this.urlRate, newRate);
   }
 
-  addReview(index: number, newReview: string) {
-    const item = this.getItemsById(index);
-    item.reviews.push(newReview);
-    item.reviewCounter++;
+  addReview(cmt): Observable<IComment> {
+    return this.http.post<IComment>(this.urlCmt, cmt);
+  }
+
+  getReview(id): Observable<IComment[]> {
+    return this.http.get<IComment[]>(this.urlCmt + '/' + id);
   }
 
   delete(id): Observable<Idata> {

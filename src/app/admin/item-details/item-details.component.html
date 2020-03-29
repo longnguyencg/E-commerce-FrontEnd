@@ -1,5 +1,6 @@
 <div class="container">
   <form [formGroup]="editForm" (ngSubmit)="update(editForm.value)">
+    <div style="display: none">{{ editForm.value | json }}</div>
     <div class="form-group">
       <label>Name</label>
       <input type="text" class="form-control" formControlName="name">
@@ -7,6 +8,15 @@
            style="margin-top: 10px;background-color: #4CAF50">
         <div *ngIf="name.errors.required">Name is required</div>
         <div *ngIf="name.errors.minlength">Name must 4 or more characters</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea class="form-control" formControlName="description"></textarea>
+      <div *ngIf="description.invalid && (description.touched || description.dirty)" class="alert alert-danger"
+           style="margin-top: 10px;background-color: #4CAF50">
+        <div *ngIf="description.errors.required">Description is required</div>
+        <div *ngIf="description.errors.minlength">Description must 4 or more characters</div>
       </div>
     </div>
     <div class="form-group">
@@ -18,10 +28,18 @@
       </div>
     </div>
     <div class="form-group">
+      <label>Sale Price</label>
+      <input type="number" class="form-control" formControlName="sale_price">
+      <div *ngIf="sale_price.invalid && (sale_price.touched || sale_price.dirty)" class="alert alert-danger"
+           style="margin-top: 10px;background-color: #4CAF50">
+        <div *ngIf="sale_price.errors.required">Sale price is required</div>
+      </div>
+    </div>
+    <div class="form-group">
       <label>Category</label>
       <br>
       <span *ngFor=" let cate of cates">
-        <input type="checkbox" [checked]="cate.check" (change)="onCheckChange($event)" value="{{ cate.id}}">{{cate.name}}
+          <input type="checkbox" [checked]="cate.check==1" (change)="onCheckChange($event)" value="{{cate.id}}">{{cate.name}}
       </span>
     </div>
     <button type="submit" class="btn btn-primary">Edit</button>
