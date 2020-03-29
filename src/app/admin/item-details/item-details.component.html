@@ -1,6 +1,5 @@
 <div class="container">
   <form [formGroup]="editForm" (ngSubmit)="update(editForm.value)">
-    {{ editForm.value | json}}
     <div class="form-group">
       <label>Name</label>
       <input type="text" class="form-control" formControlName="name">
