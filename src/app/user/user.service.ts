@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {IUsers} from './interface/iusers';
 import {Observable} from 'rxjs';
 import {BehaviorSubject} from 'rxjs';
+import {Idata} from '../home/item/idata';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +25,17 @@ export class UserService {
   updateUser(user) {
     this.userData.next(user);
   }
+
   updateLoggedIn(loggedIn: boolean) {
     this.loggedInData.next(loggedIn);
   }
 
   getAll(): Observable<IUsers[]> {
     return this.http.get<IUsers[]>(this.url + 'users');
+  }
+
+  getDetails(id): Observable<Idata> {
+    return this.http.get<Idata>(this.url + 'users/detail/' + id);
   }
 
   login(data): Observable<IUsers> {
@@ -46,5 +52,17 @@ export class UserService {
 
   findById(id): Observable<IUsers> {
     return this.http.get<IUsers>(this.url + id);
+  }
+
+  updateDetails(user): Observable<any> {
+    return this.http.put<any>(this.url + 'users/detail', user);
+  }
+
+  newDetails(user): Observable<any> {
+    return this.http.post<any>(this.url + 'users/detail', user);
+  }
+
+  changePass(data): Observable<any> {
+    return this.http.put<any>(this.url + 'user', data);
   }
 }

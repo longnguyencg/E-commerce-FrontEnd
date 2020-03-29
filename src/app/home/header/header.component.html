@@ -19,9 +19,6 @@
         <li class="nav-item m-auto">
           <a class="nav-link" routerLink="home">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact</a>
-        </li>
         <li class="nav-item" >
           <a class="nav-link" routerLink="home/admin">Admin</a>
         </li>
@@ -32,19 +29,10 @@
           </a>
         </li>
       </ul>
-
-      <form class="form-inline my-2 my-lg-0">
-        <div class="input-group input-group-sm">
-          <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
-                 placeholder="Search...">
-          <div class="input-group-append">
-            <button type="button" class="btn btn-secondary btn-number">
-              <i class="fa fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
       <div style="margin-left: 10px; color: white" *ngIf="user">Hello {{user.name}} |</div>
+      <div style="margin-left: 10px; color: white" *ngIf="user">
+        <a routerLink="profile">Profile </a>|
+        </div>
       <div style="margin-left: 10px" *ngIf="user">
         <a href="#" (click)="logout()">
           <span class="glyphicon glyphicon-log-out"></span> Log out
