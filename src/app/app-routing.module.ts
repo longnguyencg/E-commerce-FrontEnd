@@ -13,6 +13,7 @@ import {ItemsComponent} from './admin/items/items.component';
 import {ItemDetailsComponent} from './admin/item-details/item-details.component';
 import {ItemCreateComponent} from './admin/item-create/item-create.component';
 import {ItemCategoryComponent} from './home/item-category/item-category.component';
+import {ProfileComponent} from './user/profile/profile.component';
 
 
 const routes: Routes = [
@@ -31,10 +32,10 @@ const routes: Routes = [
           {path: 'add', component: ItemCreateComponent},
         ]
       },
-      {path: ':id', component: ItemCategoryComponent}
     ]
   },
   {path: 'login', component: LoginComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: 'register', component: RegisterComponent}
 ];
 

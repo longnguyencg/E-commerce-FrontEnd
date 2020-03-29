@@ -24,7 +24,9 @@ export class ItemCreateComponent implements OnInit {
     this.addForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(4)]],
       price: ['', [Validators.required]],
-      categories: this.fb.array([])
+      categories: this.fb.array([]),
+      sale_price: ['', [Validators.required]],
+      description: ['', [Validators.required, Validators.minLength(4)]]
     });
   }
 
@@ -33,7 +35,9 @@ export class ItemCreateComponent implements OnInit {
       const product1 = {
         name: data.name,
         price: data.price,
-        categories: data.categories
+        categories: data.categories,
+        sale_price: data.sale_price,
+        description: data.description
       };
       this.itemService.addItem(product1).subscribe(next => {
         this.itemService.getItems().subscribe(next1 => {
@@ -42,13 +46,7 @@ export class ItemCreateComponent implements OnInit {
               itemss.push(product[0]);
             }
             for (const item of itemss) {
-              item.description = 'haha';
               item.imagePath = 'https://5.imimg.com/data5/EH/IU/MY-13191810/moto-g5-plus-500x500.png';
-              item.reviewCounter = 3;
-              item.reviews = ['good', 'bad', 'ok'];
-              item.ratingCounter = 3;
-              item.ratings = [3, 5, 3];
-              item.avg = 3.3;
               item.extraImages = [
                 'https://fscl01.fonpit.de/userfiles/6727621/image/2017/lenovo-moto-g5/AndroidPIT-lenovo-moto-g5-1120-w810h462.jpg',
                 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQs5vZtDVm21sb-dInaZ-7qJXJCqNKzDTc50UO3-G97A6zGNf5k',
@@ -73,6 +71,12 @@ export class ItemCreateComponent implements OnInit {
 
   get price() {
     return this.addForm.get('price');
+  }
+  get sale_price() {
+    return this.addForm.get('sale_price');
+  }
+  get description() {
+    return this.addForm.get('description');
   }
 
   cancel() {
