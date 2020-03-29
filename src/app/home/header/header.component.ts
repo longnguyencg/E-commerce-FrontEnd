@@ -13,7 +13,6 @@ import {ItemService} from '../item/item.service';
 export class HeaderComponent implements OnInit {
   user;
   loggedIn;
-
   constructor(private usersService: UserService, private router: Router, private authService: AuthService,
               private itemService: ItemService) {
 

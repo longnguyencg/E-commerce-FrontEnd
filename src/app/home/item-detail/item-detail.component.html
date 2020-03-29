@@ -15,12 +15,6 @@
         </div>
       </div>
       <Br>
-      <div class="card">
-        <label><b>Details: </b></label>
-        {{inItems.description}}
-        <br>
-        <br>
-      </div>
     </div>
 
     <div class="col-xs-6" id="page2">
@@ -31,6 +25,9 @@
         <br>
         <h5>Price: <b style="text-decoration: line-through">{{inItems.price}}</b></h5>
         <h5>Sale : <b>{{ inItems.sale_price | currency}}</b></h5>
+        <br>
+        <label><b>Details: </b></label>
+        {{inItems.description}}
         <label *ngIf="user && voteByUser"><i>You voted with {{ voteByUser.amount }} *</i></label>
         <br>
         <label *ngIf="user && voteByUser"><i>You can revoted below</i></label>
