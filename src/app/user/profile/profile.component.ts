@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   changePassForm;
   user;
   detailsUser;
+
   constructor(private http: HttpClient, private fb: FormBuilder, private router: Router,
               private usersService: UserService) {
   }
@@ -47,30 +48,47 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  editProfile(data) {
+  editProfile(data1) {
     const details = {
       user_id: this.user.id,
       name: this.user.name,
       email: this.user.email,
-      phone: data.phone,
-      address: data.address,
-      addressOther: data.addressOther,
-      avatar: data.avatar
+      phone: data1.phone,
+      address: data1.address,
+      addressOther: data1.addressOther,
+      avatar: data1.avatar
     };
     if (this.detailsUser) {
-      console.log(details);
       this.usersService.updateDetails(details).subscribe(next => {
-        this.ngOnInit();
+        alert('Updated');
+        this.usersService.getDetails(this.user.id).subscribe(data => {
+          this.detailsUser = '';
+          this.detailsUser = data;
+          this.profileForm = this.fb.group({
+            phone: [this.detailsUser.phone, [Validators.required]],
+            address: [this.detailsUser.address, [Validators.required]],
+            addressOther: [this.detailsUser.addressOther, [Validators.required]],
+            avatar: [this.detailsUser.avatar, [Validators.required]],
+          });
+        });
       });
     } else {
       this.usersService.newDetails(details).subscribe(next => {
-        this.ngOnInit();
+        alert('Added');
+        this.usersService.getDetails(this.user.id).subscribe(data => {
+            this.detailsUser = data;
+            this.profileForm = this.fb.group({
+              phone: [this.detailsUser.phone, [Validators.required]],
+              address: [this.detailsUser.address, [Validators.required]],
+              addressOther: [this.detailsUser.addressOther, [Validators.required]],
+              avatar: [this.detailsUser.avatar, [Validators.required]],
+            });
+        });
       });
     }
   }
-
   changePass(data) {
-    if (data.oldPassword && data.newPassword && data.confirmNewPassword){
+    if (data.oldPassword && data.newPassword && data.confirmNewPassword) {
       if (data.newPassword === data.confirmNewPassword) {
         const cPUser = {
           id: this.user.id,
@@ -78,11 +96,16 @@ export class ProfileComponent implements OnInit {
           newPassword: data.newPassword
         };
         this.usersService.changePass(cPUser).subscribe(next1 => {
-          if (next1 === 'Successfully') {
-            alert('Change password successfully');
-          } else {
-            alert('Change password failed');
-          }
+            if (next1 === 'Successfully') {
+              alert('Change password successfully');
+              this.changePassForm = this.fb.group({
+                oldPassword: ['', [Validators.required]],
+                newPassword: ['', [Validators.required]],
+                confirmNewPassword: ['', [Validators.required]],
+              });
+            } else {
+              alert('Change password failed');
+            }
           }
         );
       }

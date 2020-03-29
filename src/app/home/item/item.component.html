@@ -8,6 +8,9 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-sm-3">
+      <div style="margin-bottom: 10px">
+        <label>Search : {{ text }}</label>
+        <input style="width: 247px;" (keyup)="searchText($event.target.value)"></div>
       <div class="card bg-light mb-3">
         <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
         <ul class="list-group category_block">
@@ -29,7 +32,9 @@
       </div>
     </div>
     <div class="col">
-      <div><p *ngIf="cateName" style="font-style: italic;color: #007bff; font-size: 20px"><a (click)="backToHome()">Home / </a>Products of {{ cateName }}</p></div>
+      <div class="row">
+        <div><p *ngIf="cateName" style="font-style: italic;color: #007bff; font-size: 20px"><a (click)="backToHome()">Home / </a>Products of {{ cateName }}</p></div>
+      </div>
       <div class="row">
         <div class="col-12 col-md-6 col-lg-4" *ngFor="let itemsAb of items">
           <div class="card">
