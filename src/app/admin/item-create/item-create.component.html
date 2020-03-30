@@ -1,6 +1,5 @@
 <div class="container">
   <form [formGroup]="addForm" (ngSubmit)="add(addForm.value)">
-    {{ addForm.value | json}}
     <div class="form-group">
       <label>Name</label>
       <input type="text" class="form-control" formControlName="name">

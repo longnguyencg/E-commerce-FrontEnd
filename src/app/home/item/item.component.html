@@ -43,10 +43,10 @@
               <h4 class="card-title"><a [routerLink]="['detail/'+ itemsAb.id]" routerLinkActive="active" title="View Product">{{ itemsAb.name}}</a></h4>
               <div class="row">
                 <div class="col">
-                  <p class="btn btn-danger btn-block" style="text-decoration: line-through; font-style: italic">${{ itemsAb.sale_price }}</p>
+                  <p class="btn btn-danger btn-block" style="text-decoration: line-through; font-style: italic">Price: ${{ itemsAb.sale_price }}</p>
                 </div>
                 <div class="col">
-                  <p class="btn btn-danger btn-block" style="font-style: italic">${{ itemsAb.price }}</p>
+                  <p class="btn btn-danger btn-block" style="font-style: italic">Sale: ${{ itemsAb.price }}</p>
                 </div>
                 <div class="col">
                   <button class="btn btn-success btn-block">Add to cart</button>
