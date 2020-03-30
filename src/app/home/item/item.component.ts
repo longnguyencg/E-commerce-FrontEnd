@@ -4,6 +4,7 @@ import {ItemService} from './item.service';
 import {UserService} from '../../user/user.service';
 import {CategoryService} from '../category.service';
 import {ICategory} from '../icategory';
+import {CartService} from "../cart/cart.service";
 
 @Component({
   selector: 'app-item',
@@ -19,7 +20,12 @@ export class ItemComponent implements OnInit {
   cateName: string;
   text = '';
 
-  constructor(private itemServ: ItemService, private usersService: UserService, private categoryService: CategoryService) {
+  constructor(
+    private itemServ: ItemService,
+    private usersService: UserService,
+    private categoryService: CategoryService,
+    private cartService: CartService,
+  ) {
   }
 
   ngOnInit(): void {
@@ -84,5 +90,8 @@ export class ItemComponent implements OnInit {
     } else {
       this.items = this.filterSeach(this.text);
     }
+  }
+  addToCart(id: number) {
+    this.cartService.addToCart(id);
   }
 }

@@ -1,4 +1,6 @@
+import {IProduct} from '../item/IProduct';
+
 export interface ICartItem {
-  product: any;
+  product: IProduct;
   quantity: number;
 }

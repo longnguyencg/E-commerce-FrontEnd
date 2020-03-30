@@ -3,4 +3,5 @@ export interface IProduct {
   name: string;
   categories?: any[];
   price: number;
+  photo?: any[];
 }
