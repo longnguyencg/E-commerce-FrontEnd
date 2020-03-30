@@ -69,6 +69,9 @@ export class ItemDetailComponent implements OnInit {
           this.countRate = 0;
           this.rate = data1[0].voteRate;
           this.countRate = data1[0].count;
+          this.itemServ.getVoteByUser(this.user.id, this.id).subscribe(vote => {
+            this.voteByUser = vote;
+          });
         });
       });
     } else {
