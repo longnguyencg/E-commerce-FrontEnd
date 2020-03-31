@@ -19,9 +19,11 @@ export class CartService {
     private http: HttpClient,
   ) {
     const cart: any = JSON.parse(localStorage.getItem('cart'));
-    if (cart) {
-      this.typeOfProduct = cart.length;
-    }
+    this.typeOfProduct = cart.length;
+  }
+  loadCartAgain() {
+    const cart: any = JSON.parse(localStorage.getItem('cart'));
+    this.typeOfProduct = cart.length;
   }
 
   updateTypeOfCart(data) {
@@ -65,6 +67,8 @@ export class CartService {
         }
       }
       // this.loadCart();
+      const cart = JSON.parse(localStorage.getItem('cart'));
+      this.updateTypeOfCart(cart.length);
     } else {
       // this.loadCart();
     }
