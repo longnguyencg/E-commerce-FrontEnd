@@ -98,7 +98,7 @@ export class CartComponent implements OnInit {
           localStorage.setItem('cart', JSON.stringify(cart));
           this.loadCart();
           this.cartService.updateTypeOfCart(cart.length);
-          alert('Mua hàng thành công, số tiền đã thanh toán là: $' + this.total);
+          alert('Mua hàng thành công');
         });
       }
     );

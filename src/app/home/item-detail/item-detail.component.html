@@ -23,8 +23,8 @@
         <h1>{{inItems.name}}</h1>
         <h6>Avg Rating: <b>{{rate}}</b>, Count Rating: <b>{{countRate}}</b></h6>
         <br>
-        <h5>Price: <b style="text-decoration: line-through">{{inItems.price}}</b></h5>
-        <h5>Sale : <b>{{ inItems.sale_price | currency}}</b></h5>
+        <h5>Price: <b style="text-decoration: line-through">{{inItems.price | number:'':'en'}}</b></h5>
+        <h5>Sale : <b>{{ inItems.sale_price | currency | number:'':'en'}}</b></h5>
         <br>
         <label><b>Details: </b></label>
         {{inItems.description}}
