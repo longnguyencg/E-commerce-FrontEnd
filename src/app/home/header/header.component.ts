@@ -4,6 +4,7 @@ import {log} from 'util';
 import {Router} from '@angular/router';
 import {AuthService} from 'angularx-social-login';
 import {ItemService} from '../item/item.service';
+import {CartService} from "../cart/cart.service";
 
 @Component({
   selector: 'app-header',
@@ -13,8 +14,10 @@ import {ItemService} from '../item/item.service';
 export class HeaderComponent implements OnInit {
   user;
   loggedIn;
+  numberCartItem;
   constructor(private usersService: UserService, private router: Router, private authService: AuthService,
-              private itemService: ItemService) {
+              private itemService: ItemService,
+              private cartService: CartService) {
 
   }
 
@@ -25,6 +28,7 @@ export class HeaderComponent implements OnInit {
     this.usersService.castLoggedIn.subscribe(next => {
       this.loggedIn = next;
     });
+    this.numberCartItem = this.cartService.typeOfProduct;
   }
   logout() {
     if (this.loggedIn) {
