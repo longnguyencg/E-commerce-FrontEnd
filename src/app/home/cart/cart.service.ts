@@ -3,13 +3,15 @@ import {ICartItem} from './ICartItem';
 import {ItemService} from '../item/item.service';
 import {HttpClient} from '@angular/common/http';
 import {Items} from '../item/item.model';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   public typeOfProduct: number = 0;
+  cartNumber = new BehaviorSubject<number>(this.typeOfProduct);
+  cast = this.cartNumber.asObservable();
   urlCheckOut = 'http://127.0.0.1:8000/api/check-out';
 
   constructor(
@@ -20,6 +22,10 @@ export class CartService {
     if (cart) {
       this.typeOfProduct = cart.length;
     }
+  }
+
+  updateTypeOfCart(data) {
+    this.cartNumber.next(data);
   }
 
   checkOut(bill): Observable<any> {

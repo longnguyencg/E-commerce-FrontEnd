@@ -29,7 +29,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCart();
-    this.totalTypeProduct = this.items.length;
+    this.cartService.cast.subscribe(data => this.totalTypeProduct = data);
   }
 
   loadCart(): void {
@@ -67,6 +67,7 @@ export class CartComponent implements OnInit {
     }
     localStorage.setItem('cart', JSON.stringify(cart));
     this.loadCart();
+    this.cartService.updateTypeOfCart(cart.length)
   }
 
   checkOut() {
@@ -74,32 +75,33 @@ export class CartComponent implements OnInit {
       this.details = detail;
       let cart: any = JSON.parse(localStorage.getItem('cart'));
       const listItem = [];
-      for (const item of cart) {
-        listItem.push(item);
+      for (let y = 0; y < cart.length; y++) {
+        let item: ICartItem = JSON.parse(cart[y]);
+        listItem.push({
+          product_id: item.product.id,
+          quantity: item.quantity
+        });
       }
-      console.log(this.details);
-      const bill = {
-        listItem,
-        status: 'true',
-        customer_id: this.user.id,
-        totalPrice: this.total,
-        user_id: this.user.id,
-        phone: this.details.phone,
-        name: this.user.name,
-        email: this.user.email,
-        address: this.details.address,
-        addressOther: this.details.addressOther
-      };
-      this.cartService.checkOut(bill).subscribe( next => {
-        let index: number = -1;
-        for (let i = 0; i < cart.length; i++) {
-          let item: ICartItem = JSON.parse(cart[i]);
-          cart.splice(i, 1);
-        }
-        localStorage.setItem('cart', JSON.stringify(cart));
-        this.loadCart();
-      });
-    });
+        const bill = {
+          cart: listItem,
+          status: 'true',
+          customer_id: this.user.id,
+          totalPrice: this.total,
+          phone: this.details.phone,
+          name: this.user.name,
+          email: this.user.email,
+          address: this.details.address
+        };
+        this.cartService.checkOut(bill).subscribe(next => {
+          let index: number = -1;
+          cart = [];
+          localStorage.setItem('cart', JSON.stringify(cart));
+          this.loadCart();
+          this.cartService.updateTypeOfCart(cart.length);
+          alert('Mua hàng thành công, số tiền đã thanh toán là: $' + this.total);
+        });
+      }
+    );
   }
 
   update(id: number, value: number) {
