@@ -93,5 +93,7 @@ export class ItemComponent implements OnInit {
   }
   addToCart(id: number) {
     this.cartService.addToCart(id);
+    alert('Đã thêm vào giỏ hàng');
+    this.cartService.loadCartAgain();
   }
 }
