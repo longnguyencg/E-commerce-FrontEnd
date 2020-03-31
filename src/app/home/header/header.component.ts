@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
     this.usersService.castLoggedIn.subscribe(next => {
       this.loggedIn = next;
     });
-    this.numberCartItem = this.cartService.typeOfProduct;
+    this.cartService.cast.subscribe(data => this.numberCartItem = data);
   }
   logout() {
     if (this.loggedIn) {

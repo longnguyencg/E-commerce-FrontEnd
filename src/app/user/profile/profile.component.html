@@ -13,10 +13,13 @@
       <form [formGroup]="profileForm" (ngSubmit)="editProfile(profileForm.value)">
 <!--        <input type="text" formControlName="name" placeholder="Name" required>-->
 <!--        <input type="email" formControlName="email" placeholder="Email" required>-->
-        <input type="number" formControlName="phone" placeholder="Phone" required>
-        <input type="text" formControlName="address" placeholder="Address" required>
-        <input type="text" formControlName="addressOther" placeholder="Address Other" required>
-        <input type="text" formControlName="avatar" placeholder="Avatar" required>
+        <label>Phone</label>
+        <input type="number" formControlName="phone"  required>
+        <label>Address</label>
+        <input type="text" formControlName="address"  required>
+        <label>Address Other</label>
+        <input type="text" formControlName="addressOther"  required>
+<!--        <input type="text" formControlName="avatar" placeholder="Avatar" required>-->
         <input type="submit" *ngIf="!detailsUser" value="Add Infomation">
         <input type="submit" *ngIf="detailsUser" value="Update Infomation">
       </form>
@@ -24,9 +27,12 @@
     <div class="col">
       <h3>Change password</h3>
       <form [formGroup]="changePassForm" (ngSubmit)="changePass(changePassForm.value)">
-        <input type="password" formControlName="oldPassword" placeholder="Old Password" required>
-        <input type="password" formControlName="newPassword" placeholder="New Password" required>
-        <input type="password" formControlName="confirmNewPassword" placeholder="Confirm New Password" required>
+        <label>Old password</label>
+        <input type="password" formControlName="oldPassword"  required>
+        <label>New password</label>
+        <input type="password" formControlName="newPassword"  required>
+        <label>Confirm new password</label>
+        <input type="password" formControlName="confirmNewPassword"  required>
         <input type="submit" value="Change">
       </form>
     </div>

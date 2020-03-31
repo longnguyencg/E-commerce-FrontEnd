@@ -18,7 +18,7 @@
           </thead>
           <tbody>
           <tr *ngFor="let item of items">
-            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+            <td><img style="width: 50px;height: 50px" src="{{ item.image }}" /> </td>
             <td>{{ item.product.name }}</td>
             <td>
               <input class="form-control" type="number" value="{{ item.quantity }}"
@@ -54,7 +54,7 @@
           <button class="btn btn-block btn-light" [routerLink]="['/home']">Continue Shopping</button>
         </div>
         <div class="col-sm-12 col-md-6 text-right">
-          <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+          <button class="btn btn-lg btn-block btn-success text-uppercase" (click)="checkOut()">Checkout</button>
         </div>
       </div>
     </div>
